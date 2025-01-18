@@ -3,7 +3,7 @@ FROM postgres:latest
 
 # Set environment variables
 ENV POSTGRES_USER=myuser
-ENV POSTGRES_PASSWORD=password123!
+ENV POSTGRES_PASSWORD=mypassword
 ENV POSTGRES_DB=mydb
 
 # Copy custom init scripts (optional)
