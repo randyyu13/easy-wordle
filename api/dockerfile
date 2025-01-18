@@ -1,0 +1,10 @@
+FROM python:3.11-slim
+
+# Install Python and Pip
+RUN apt-get update && apt-get install -y python3 python3-pip
+
+# Copy requirements.txt
+COPY database/requirements.txt /requirements.txt
+
+# Install Python dependencies
+RUN pip3 install -r /requirements.txt

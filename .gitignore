@@ -169,3 +169,6 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Generated text file
+top_100k_five_letter_words.txt
