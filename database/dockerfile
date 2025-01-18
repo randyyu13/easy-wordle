@@ -1,0 +1,18 @@
+# Use official PostgreSQL base image
+FROM postgres:latest
+
+# Set environment variables
+ENV POSTGRES_USER=myuser
+ENV POSTGRES_PASSWORD=mypassword
+ENV POSTGRES_DB=mydb
+
+# Copy custom init scripts (optional)
+COPY database/migrations /docker-entrypoint-initdb.d/
+COPY database/entrypoint.sh /docker-entrypoint-initdb.d/
+
+# Expose port 5432 for PostgreSQL
+EXPOSE 5432
+
+# docker build -t custom-postgres .
+# docker build -t local-db -f database/dockerfile .
+# docker run --name my-pg-container -d -p 5432:5432 custom-postgres
