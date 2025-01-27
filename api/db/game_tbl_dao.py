@@ -1,5 +1,5 @@
-from api.db.base_dao import BaseDAO
-from api.models import Game
+from db.base_dao import BaseDAO
+from models import Game
 
 class GameDAO(BaseDAO):
     def insert_game(self, game: Game):

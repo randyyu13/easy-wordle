@@ -1,3 +1,5 @@
+import psycopg2
+from psycopg2.extras import RealDictCursor
 from psycopg2 import pool
 
 class Database:
@@ -5,7 +7,9 @@ class Database:
 
     @staticmethod
     def initialize(**kwargs):
-        Database._connection_pool = pool.SimpleConnectionPool(1, 10, **kwargs)
+        Database._connection_pool = psycopg2.pool.SimpleConnectionPool(
+            1, 10, cursor_factory=RealDictCursor, **kwargs
+        )
 
     @staticmethod
     def get_connection():

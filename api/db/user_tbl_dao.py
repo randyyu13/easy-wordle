@@ -1,5 +1,5 @@
-from api.db.base_dao import BaseDAO
-from api.models import User
+from db.base_dao import BaseDAO
+from models import User
 
 class UserDAO(BaseDAO):
     def insert_user(self, user: User):

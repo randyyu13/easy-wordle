@@ -1,6 +1,8 @@
 services:
   db:
-    image: local-db-image
+    build:
+      context: ./database  # Path where your Dockerfile for db exists
+      dockerfile: Dockerfile  # (Optional) Use this line if the Dockerfile name is non-standard
     container_name: local-db
     environment:
       POSTGRES_USER: myuser
@@ -10,6 +12,22 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: ./api  # Path where your Dockerfile for the API exists
+      dockerfile: Dockerfile  # (Optional) If Dockerfile is named differently
+    container_name: local-api
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: mydb
+      DB_USER: myuser
+      DB_PASSWORD: mypassword
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
 
 volumes:
   pgdata:
