@@ -23,7 +23,7 @@ class BaseDAO:
         """Fetch a single row from the last executed query."""
         return self.cursor.fetchone()
 
-    def execute_and_fetch_all(self, query, params=None):
-        """Combines execute and fetch_all in one step."""
-        self.execute(query, params)
-        return self.fetch_all()
+    # def execute_and_fetch_all(self, query, params=None):
+    #     """Combines execute and fetch_all in one step."""
+    #     self.execute(query, params)
+    #     return self.fetch_all()

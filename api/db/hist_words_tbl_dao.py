@@ -1,5 +1,5 @@
 from db.base_dao import BaseDAO
-from models import HistoricalWord
+from models.HistoricalWord import HistoricalWord
 
 class HistoricalWordsDAO(BaseDAO):
     def upsert_historical_word(self, historical_word: HistoricalWord):

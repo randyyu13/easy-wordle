@@ -1,8 +1,7 @@
 services:
   db:
     build:
-      context: ./database  # Path where your Dockerfile for db exists
-      dockerfile: Dockerfile  # (Optional) Use this line if the Dockerfile name is non-standard
+      context: ./database
     container_name: local-db
     environment:
       POSTGRES_USER: myuser
@@ -15,8 +14,7 @@ services:
 
   api:
     build:
-      context: ./api  # Path where your Dockerfile for the API exists
-      dockerfile: Dockerfile  # (Optional) If Dockerfile is named differently
+      context: ./api
     container_name: local-api
     environment:
       DB_HOST: db

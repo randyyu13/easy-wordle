@@ -1,5 +1,5 @@
 from db.base_dao import BaseDAO
-from models import Game
+from models.Game import Game
 
 class GameDAO(BaseDAO):
     def insert_game(self, game: Game):
