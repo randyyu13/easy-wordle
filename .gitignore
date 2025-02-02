@@ -172,3 +172,5 @@ cython_debug/
 
 # Generated text file
 top_100k_five_letter_words.txt
+
+temp.sql

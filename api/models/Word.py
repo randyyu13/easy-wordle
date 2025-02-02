@@ -1,6 +1,9 @@
-class Word:
-    def __init__(self, id, word, date, date_used):
-        self.id = id
-        self.word = word
-        self.date = date
-        self.date_used = date_used
+from pydantic import BaseModel
+from typing import Optional
+from datetime import date
+
+class Word(BaseModel):
+    id: Optional[int] = None
+    word: str
+    was_used: bool
+    date_used: Optional[date] = None
