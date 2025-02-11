@@ -1,5 +1,5 @@
 from db.base_dao import BaseDAO
-from models import User
+from models.User import User
 
 class UserDAO(BaseDAO):
     def insert_user(self, user: User):

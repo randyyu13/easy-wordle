@@ -27,5 +27,14 @@ services:
     depends_on:
       - db
 
+  frontend:
+    build:
+      context: ./frontend/easy-wordle
+    container_name: easy-wordle-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+
 volumes:
   pgdata:
