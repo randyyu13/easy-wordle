@@ -12,6 +12,7 @@ class UserDAO(BaseDAO):
         VALUES (%s, %s, %s, %s)
         """
         self.execute(query, (user.is_guest, user.guest_id, user.username, user.email))
+        self.close()
 
     def upsert_user(self, user: User):
         """
@@ -27,6 +28,7 @@ class UserDAO(BaseDAO):
             email = EXCLUDED.email;
         """
         self.execute(query, (user.is_guest, user.guest_id, user.username, user.email))
+        self.close()
 
     def delete_user_by_guest_id(self, guest_id: str):
         """
@@ -34,3 +36,4 @@ class UserDAO(BaseDAO):
         """
         query = "DELETE FROM usersTbl WHERE guestId = %s;"
         self.execute(query, (guest_id,))
+        self.close()

@@ -22,6 +22,7 @@ class HistoricalWordsDAO(BaseDAO):
         )
         historical_word.event_id = self.fetch_one()[0]  # Set the generated or existing event_id
         self.connection.commit()
+        self.close()
 
     def get_historical_word_by_date(self, event_date: str) -> HistoricalWord:
         """
@@ -34,4 +35,5 @@ class HistoricalWordsDAO(BaseDAO):
         """
         self.execute(query, (event_date,))
         row = self.fetch_one()
+        self.close()
         return HistoricalWord(*row) if row else None
