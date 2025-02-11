@@ -9,6 +9,7 @@ class WordDAO(BaseDAO):
         ON CONFLICT (word) DO NOTHING;
         """
         self.execute(query, (word.word, word.was_used, word.date_used))
+        self.close()
 
     def update_word(self, word: Word):
         query = """
@@ -17,6 +18,7 @@ class WordDAO(BaseDAO):
         WHERE word = %s;
         """
         self.execute(query, (word.was_used, word.date_used, word.word))
+        self.close()
 
     def get_all_words(self):
         query = """
@@ -29,6 +31,7 @@ class WordDAO(BaseDAO):
         """
         self.execute(query)
         rows = self.fetch_all()
+        self.close()
         return [Word(**row) for row in rows]
 
     def set_word_of_the_day(self, date):
@@ -43,6 +46,7 @@ class WordDAO(BaseDAO):
         # Select a random word that hasn't been used
         query_select_random = "SELECT id, word FROM wordsTbl WHERE dateUsed IS NULL ORDER BY RANDOM() LIMIT 1;"
         self.execute(query_select_random)
+        self.close()
         word_row = self.fetch_one()
 
         if not word_row:
@@ -58,7 +62,7 @@ class WordDAO(BaseDAO):
 
         # Use the update_word method for abstraction
         self.update_word(word)
-
+        self.close()
         return {"message": f"Word of the day set to '{word.word}' for {date}."}
     
     def get_word_of_the_day(self, date):
@@ -79,4 +83,15 @@ class WordDAO(BaseDAO):
 
         # Convert database row to Pydantic model and return
         word = Word(**word_row)
+        self.close()
         return word
+    
+    # def is_valid_word(self, word: str) -> bool:
+    #     """
+    #     Checks if a word exists in the wordsTbl.
+    #     """
+    #     query = "SELECT 1 FROM wordsTbl WHERE word = %s LIMIT 1;"
+    #     self.execute(query, (word,))
+    #     result = self.fetch_one()
+    #     self.close()
+    #     return result is not None

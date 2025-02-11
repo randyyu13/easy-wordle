@@ -20,6 +20,7 @@ class GameDAO(BaseDAO):
             ),
         )
         self.connection.commit()
+        self.close()
 
     def upsert_game(self, game: Game):
         """
@@ -44,6 +45,7 @@ class GameDAO(BaseDAO):
             ),
         )
         self.connection.commit()
+        self.close()
 
     def get_game_by_user_id(self, user_id: str) -> Game:
         """
@@ -56,6 +58,14 @@ class GameDAO(BaseDAO):
         """
         self.execute(query, (user_id,))
         row = self.fetch_one()
+        self.close()
         if row:
-            return Game(*row)
+            return Game(
+                id=row['id'],
+                word=row['word'],
+                user_id=row['userid'],
+                guessed_letters=row['guessedletters'],
+                guessed_words=row['guessedwords']
+            )
         return None
+    
