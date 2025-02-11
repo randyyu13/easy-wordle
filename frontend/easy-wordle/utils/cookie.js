@@ -30,6 +30,3 @@ function sendGuestIDToServer(guestID) {
     .then(data => console.log('User created:', data))
     .catch(error => console.error('Error creating user:', error));
 }
-
-// Get or create the guest ID when the page loads
-getOrCreateGuestID();
