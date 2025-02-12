@@ -1,2 +1,2 @@
-// features/GameBoard/index.js
+// GameBoard/index.js
 export { default } from './GameBoard';
