@@ -2,9 +2,15 @@ const localURL = 'http://localhost:8000'; // Adjust this to your actual API base
 const wordDataApiUrl = 'https://api.datamuse.com'
 
 // Helper function to handle API requests
-async function apiRequest(apiBaseUrl,endpoint, method = 'GET', body = null) {
-    const headers = { 'Content-Type': 'application/json' };
-    const options = { method, headers };
+async function apiRequest(apiBaseUrl, endpoint, method = 'GET', body = null) {
+    const headers = { 
+        'Content-Type': 'application/json'
+    };
+    const options = { 
+        method, 
+        headers,
+        credentials: 'include'
+    };
 
     if (body) {
         options.body = JSON.stringify(body);
@@ -18,34 +24,44 @@ async function apiRequest(apiBaseUrl,endpoint, method = 'GET', body = null) {
 }
 
 // User-related API calls
-export async function createUser(url, userData) {
+async function createUser(url, userData) {
     return apiRequest(url, '/new-user', 'POST', userData);
 }
 
 // Game-related API calls
-export async function createGame(url, gameData) {
+async function createGame(url, gameData) {
     return apiRequest(url, '/new-game', 'POST', gameData);
 }
 
 // Word-related API calls
-export async function setWordOfTheDay(url) {
+async function setWordOfTheDay(url) {
     return apiRequest(url, '/set-word-of-the-day', 'POST');
 }
 
-export async function getWordOfTheDay(url) {
+async function getWordOfTheDay(url) {
     return apiRequest(url, `/word-of-the-day/`);
 }
 
-export async function getGameByUserId(url, userId) {
+async function getGameByUserId(url, userId) {
     return apiRequest(url, `/game-data?user_id=${userId}`);
 }
 
-export async function upsertGame(url, gameData) {
+async function upsertGame(url, gameData) {
     return apiRequest(url, `/game-data/`, 'PATCH', gameData);
 }
 
-export async function isRealWord(url, word) {
+async function isRealWord(url, word) {
     return apiRequest(url, `/words?sp=${word}&max=1`);
 }
 
-export { localURL, wordDataApiUrl, createUser, createGame, setWordOfTheDay, getWordOfTheDay, getGameByUserId, upsertGame, isRealWord }
+export {
+    localURL,
+    wordDataApiUrl,
+    createUser,
+    createGame,
+    setWordOfTheDay,
+    getWordOfTheDay,
+    getGameByUserId,
+    upsertGame,
+    isRealWord
+};

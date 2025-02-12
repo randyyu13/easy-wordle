@@ -1,12 +1,12 @@
 import './App.css'
-import GameBoard from './features/GameBoard/GameBoard'
-import './features/GameBoard/GameBoard.css';
+import Game from './components/Game/Game'
+import './components/GameBoard/GameBoard.css';
 function App() {
 
   return (
     <>
       <div className="game-board-container">
-        <GameBoard/>
+        <Game/>
       </div>
     </>
   )
