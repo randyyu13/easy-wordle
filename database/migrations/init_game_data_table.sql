@@ -3,5 +3,5 @@ CREATE TABLE gameDataTbl (
     word VARCHAR(5),
     userId VARCHAR(100) UNIQUE,
     guessedLetters CHAR(1)[],
-    guessedWords CHAR(6)[]
+    guessedWords CHAR(5)[]
 )

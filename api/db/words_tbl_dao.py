@@ -46,9 +46,9 @@ class WordDAO(BaseDAO):
         # Select a random word that hasn't been used
         query_select_random = "SELECT id, word FROM wordsTbl WHERE dateUsed IS NULL ORDER BY RANDOM() LIMIT 1;"
         self.execute(query_select_random)
-        self.close()
+        
         word_row = self.fetch_one()
-
+    
         if not word_row:
             return {"message": "No available words to set as word of the day."}
 
